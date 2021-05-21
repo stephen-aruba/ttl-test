@@ -1,5 +1,6 @@
 #! .venv/bin/python3
 
+import time
 from datetime import datetime
 
 from operator import attrgetter
@@ -42,6 +43,9 @@ def test_cache():
 
     print("Start test_cache")
 
+    # get time.monotonic value
+    monotonic = time.monotonic()
+
     # return method response
     print(get_time("key"))
     assert call_count == 1
@@ -51,7 +55,7 @@ def test_cache():
     assert call_count == 1
 
     # remove expired items from the cache, these should then be re-requested
-    time_cache.expire(time=500)  # time in seconds since start of test
+    time_cache.expire(time=monotonic+500)  # time in seconds since start of test
 
     # return method response
     print(get_time("key"))
@@ -67,6 +71,9 @@ def test_method_cache():
 
     print("Start test_method_cache")
 
+    # get time.monotonic value
+    monotonic = time.monotonic()
+
     # return method response
     print(ttt.get_time("key"))
     assert call_count == 1
@@ -76,7 +83,7 @@ def test_method_cache():
     assert call_count == 1
 
     # remove expired items from the cache, these should then be re-requested
-    ttt.cache.expire(time=500)  # time in seconds since start of test
+    ttt.cache.expire(time=monotonic+500)  # time in seconds since start of test
 
     # return method response
     print(ttt.get_time("key"))
