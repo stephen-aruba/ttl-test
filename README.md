@@ -1,3 +1,5 @@
+[![Test Cases](https://github.com/stephen-aruba/ttl-test/actions/workflows/python-package.yml/badge.svg)](https://github.com/stephen-aruba/ttl-test/actions/workflows/python-package.yml)
+
 # ttl-test
 
 A demo repo illustrating a potential bug in `cachetools.TTLCache`.
